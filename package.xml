@@ -3,6 +3,7 @@
   <name>motion_planning</name>
   <version>0.0.0</version>
   <description>The motion_planning package</description>
+<<<<<<< HEAD
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->
@@ -50,3 +51,23 @@
 
   </export>
 </package>
+=======
+  <maintainer email="your@mail.mail">your_name</maintainer>
+  <license>TODO</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>pluginlib</build_depend>
+  <build_depend>moveit_core</build_depend>
+  <build_depend>moveit_ros_planning_interface</build_depend>
+  <build_depend>moveit_ros_perception</build_depend>
+  <build_depend>cmake_modules</build_depend>
+
+  <run_depend>pluginlib</run_depend>
+  <run_depend>moveit_core</run_depend>
+
+  <run_depend>moveit_fake_controller_manager</run_depend>
+  <run_depend>moveit_ros_planning_interface</run_depend>
+  <run_depend>moveit_ros_perception</run_depend>
+  <run_depend>roscpp</run_depend>
+</package>
+>>>>>>> 2fdad4f4709d2744db1bd29ce453c1a83312fb83
