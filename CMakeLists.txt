@@ -26,5 +26,20 @@ catkin_package(
   moveit_ros_planning_interface
   )
 
-add_executable(motion_planning src/moving.cpp)
-target_link_libraries(motion_planning ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+add_executable(motion_planning_0 src/moving_0.cpp)
+target_link_libraries(motion_planning_0 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(motion_planning_1 src/moving_1.cpp)
+target_link_libraries(motion_planning_1 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(motion_planning_2 src/moving_2.cpp)
+target_link_libraries(motion_planning_2 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(motion_planning_3 src/moving_3.cpp)
+target_link_libraries(motion_planning_3 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(motion_planning_4 src/moving_4.cpp)
+target_link_libraries(motion_planning_4 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(motion_planning_5 src/moving_5.cpp)
+target_link_libraries(motion_planning_5 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
