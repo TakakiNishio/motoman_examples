@@ -1,2 +1,2 @@
-# motoman_mp
-motion planning for grasping
+# motoman_examples
+simple motion planning examples for the motoman sia 5
