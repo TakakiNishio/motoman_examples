@@ -43,3 +43,6 @@ target_link_libraries(motion_planning_4 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 add_executable(motion_planning_5 src/moving_5.cpp)
 target_link_libraries(motion_planning_5 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(output_result src/output_result.cpp)
+target_link_libraries(output_result ${catkin_LIBRARIES} ${Boost_LIBRARIES})
