@@ -44,5 +44,11 @@ target_link_libraries(motion_planning_4 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 add_executable(motion_planning_5 src/moving_5.cpp)
 target_link_libraries(motion_planning_5 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
-add_executable(output_result src/output_result.cpp)
-target_link_libraries(output_result ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+add_executable(multiple_plans_gomi src/multiple_plans_gomi.cpp)
+target_link_libraries(multiple_plans_gomi ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(multiple_plans src/multiple_plans.cpp)
+target_link_libraries(multiple_plans ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(multiple_plans_and_execution src/multiple_plans_and_execution.cpp)
+target_link_libraries(multiple_plans_and_execution ${catkin_LIBRARIES} ${Boost_LIBRARIES})
