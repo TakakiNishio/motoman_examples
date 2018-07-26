@@ -17,10 +17,13 @@ int main(int argc, char **argv)
   int count = 1;
 
   //first point
-  goal.orientation.w = 1.0;
+  goal.orientation.w = 0;
+  goal.orientation.x = 1.0;
+  goal.orientation.y = 0;
+  goal.orientation.z = 0;
   goal.position.x = 0.6;
-  goal.position.y = -0.1;
-  goal.position.z = 0.42;
+  goal.position.y = 0.3;
+  goal.position.z = 0.3;
 
   plan_group.setGoalTolerance(0.2);
   plan_group.setPoseTarget(goal);
@@ -36,10 +39,13 @@ int main(int argc, char **argv)
   sleep(3.0);
 
   //second point
-  goal.orientation.w = 1.0;
-  goal.position.x = 0.3;
-  goal.position.y = 0.4;
-  goal.position.z = 0.22;
+  goal.orientation.w = 0;
+  goal.orientation.x = 1.0;
+  goal.orientation.y = 0;
+  goal.orientation.z = 0;
+  goal.position.x = 0.6;
+  goal.position.y = -0.3;
+  goal.position.z = 0.3;
 
   plan_group.setGoalTolerance(0.2);
   plan_group.setPoseTarget(goal);
