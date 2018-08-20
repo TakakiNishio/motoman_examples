@@ -33,11 +33,11 @@
     <!-- Configuration planning library -->
     <arg name="ompl_config" default="$(find motoman_sia5_moveit_config)/config/ompl_planning.yaml"/>
     <!-- Choose planner [ompl|chomp|stomp] -->
-    <arg name="planning_config" default="ompl"/>
+    <arg name="planning_config" default="stomp"/>
     <!-- If you choose ompl, "use_ompl" is true. -->
-    <arg name="use_ompl" default="true"/>
+    <arg name="use_ompl" default="false"/>
     <!-- If you choose stomp, "use_stomp" is true. -->
-    <arg name="use_stomp" default="false"/>
+    <arg name="use_stomp" default="true"/>
 
   </include>
 </launch>

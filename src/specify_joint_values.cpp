@@ -17,18 +17,20 @@ int main(int argc, char **argv)
     // Create a published for the arm plan visualization
     ros::Publisher display_pub = nh.advertise<moveit_msgs::DisplayTrajectory>("/move_group/display_planned_path", 1, true);
 
-    // Set a goal message as a pose of the end effector
-    geometry_msgs::Pose goal;
-    goal.orientation.w = 1.0;
-    goal.position.x = 0.6;
-    goal.position.y = -0.1;
-    goal.position.z = 0.42;
- 
-    // Set the tolerance to consider the goal achieved
-    plan_group.setGoalTolerance(0.2);
+    plan_group.setStartState(*plan_group.getCurrentState());
 
-    // Set the target pose, which is the goal we already defined
-    plan_group.setPoseTarget(goal);
+    // Setting the goal position
+    std::map<std::string, double> joints;
+
+    joints["joint_s"] = -0.8;
+    joints["joint_l"] = 0.2;
+    joints["joint_e"] = 0.0;
+    joints["joint_u"] = -0.4;
+    joints["joint_r"] = 0.35;
+    joints["joint_b"] = 0.6;
+    joints["joint_t"] = 0.4;
+
+    plan_group.setJointValueTarget(joints);
 
     // Perform the planning step, and if it succeeds display the current
     // arm trajectory and move the arm
@@ -45,33 +47,6 @@ int main(int argc, char **argv)
         plan_group.move();
     }
 
-    sleep(7.0);
-
-    goal.orientation.w = 1.0;
-    goal.position.x = 0.3;
-    goal.position.y = 0.4;
-    goal.position.z = 0.22;
-
-    // Set the tolerance to consider the goal achieved
-    plan_group.setGoalTolerance(0.2);
-
-    // Set the target pose, which is the goal we already defined
-    plan_group.setPoseTarget(goal);
-
-    // Perform the planning step, and if it succeeds display the current
-    // arm trajectory and move the arm
-    moveit::planning_interface::MoveGroup::Plan goal_plan2;
-    if (plan_group.plan(goal_plan2))
-    {
-        moveit_msgs::DisplayTrajectory display_msg;
-        display_msg.trajectory_start = goal_plan2.start_state_;
-        display_msg.trajectory.push_back(goal_plan2.trajectory_);
-        display_pub.publish(display_msg);
-
-        sleep(5.0);
-
-        plan_group.move();
-    }
 
     ROS_INFO("Finished all plan and move!");
     ros::waitForShutdown();
