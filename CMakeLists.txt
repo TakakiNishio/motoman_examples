@@ -11,6 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   moveit_ros_planning
   moveit_ros_planning_interface
   pluginlib
+  tf
+  geometry_msgs
   cmake_modules)
 
 find_package(Boost REQUIRED system filesystem date_time thread)
@@ -26,8 +28,8 @@ catkin_package(
   moveit_ros_planning_interface
   )
 
-add_executable(motion_planning_0 src/moving_0.cpp)
-target_link_libraries(motion_planning_0 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+add_executable(specify_joint_angle src/specify_joint_angle.cpp)
+target_link_libraries(specify_joint_angle ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 add_executable(motion_planning_1 src/moving_1.cpp)
 target_link_libraries(motion_planning_1 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
@@ -52,3 +54,7 @@ target_link_libraries(multiple_plans ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 add_executable(multiple_plans_and_execution src/multiple_plans_and_execution.cpp)
 target_link_libraries(multiple_plans_and_execution ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(tunnel_planning_and_execution src/tunnel_planning_and_execution.cpp)
+target_link_libraries(tunnel_planning_and_execution ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+

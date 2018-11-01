@@ -4,33 +4,38 @@ int main(int argc, char** argv)
 {
   // Initialization of the ROS node
   ros::init(argc, argv, "moving_the_robot");
+  ros::NodeHandle node_handle;
+  ros::AsyncSpinner spinner(1);
+  spinner.start();
 
   // Initialization of moveit
   moveit::planning_interface::MoveGroup group("arm");
 
-  // Setting the start position
+  // // Setting the start position
   group.setStartState(*group.getCurrentState());
 
   // Setting the goal position
-  geometry_msgs::Pose target;
-  target.orientation.w = 1.0;
-  target.position.x = 0.6;
-  target.position.y = -0.1;
-  target.position.z = 0.42;
+  geometry_msgs::Pose goal;
+  goal.position.x = 0.5557;
+  goal.position.y = 0.153236;
+  goal.position.z = 0.353918;
+  goal.orientation.w = 8.55919e-5;
+  goal.orientation.x = 0.713737;
+  goal.orientation.y = -0.000233858;
+  goal.orientation.z = 0.700414;
 
-  group.setPoseTarget(target);
+  group.setPoseTarget(goal);
 
   // To use the STOMP planner
-  // robot_state::RobotState robot_state_goal(*group.getCurrentState());
-  // std::map<std::string, double> joints;
-  // joints["joint_s"] = robot_state_goal.getVariablePosition("joint_s");
-  // joints["joint_l"] = robot_state_goal.getVariablePosition("joint_l");
-  // joints["joint_e"] = robot_state_goal.getVariablePosition("joint_e");
-  // joints["joint_u"] = robot_state_goal.getVariablePosition("joint_u");
-  // joints["joint_r"] = robot_state_goal.getVariablePosition("joint_r");
-  // joints["joint_b"] = robot_state_goal.getVariablePosition("joint_b");
-  // joints["joint_t"] = robot_state_goal.getVariablePosition("joint_t");
-  // group.setJointValueTarget(joints);
+  robot_state::RobotState robot_state_goal(*group.getCurrentState());
+  std::map<std::string, double> joints;
+  joints["joint_1"] = robot_state_goal.getVariablePosition("joint_1");
+  joints["joint_2"] = robot_state_goal.getVariablePosition("joint_2");
+  joints["joint_3"] = robot_state_goal.getVariablePosition("joint_3");
+  joints["joint_4"] = robot_state_goal.getVariablePosition("joint_4");
+  joints["joint_5"] = robot_state_goal.getVariablePosition("joint_5");
+  joints["joint_6"] = robot_state_goal.getVariablePosition("joint_6");
+  group.setJointValueTarget(joints);
 
   // Running the moveit planning
   moveit::planning_interface::MoveGroup::Plan result_plan;
