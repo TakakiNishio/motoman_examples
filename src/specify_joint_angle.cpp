@@ -40,6 +40,7 @@ int main(int argc, char** argv)
   // Running the moveit planning
   moveit::planning_interface::MoveGroup::Plan result_plan;
   group.plan(result_plan);
+  group.move();
 
   ros::spinOnce();
   ros::shutdown();
