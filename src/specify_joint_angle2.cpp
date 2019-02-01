@@ -51,6 +51,7 @@ int main(int argc, char** argv)
   moveit::planning_interface::MoveGroup::Plan initial_plan;
   group.plan(initial_plan);
 
+  // Scaling the execution speed
   moveit_msgs::RobotTrajectory initial_trajectory;
   moveit_msgs::RobotTrajectory new_trajectory;
 
@@ -60,7 +61,6 @@ int main(int argc, char** argv)
   // new_trajectory.multi_dof_joint_trajectory = initial_trajectory.multi_dof_joint_trajectory;
 
   int n_joints = 6;
-  // int n_points = sizeof(initial_trajectory.joint_trajectory.points);
   int n_points = initial_trajectory.joint_trajectory.points.size();
   double speed_scale = 3.0;
 
@@ -74,9 +74,9 @@ int main(int argc, char** argv)
 
     for (int j=0; j<n_joints; j++){
       new_trajectory.joint_trajectory.points[i].velocities[j] = initial_trajectory.joint_trajectory.points[i].velocities[j] * speed_scale;
-      // new_trajectory.joint_trajectory.points[i].accelerations[j] = initial_trajectory.joint_trajectory.points[i].accelerations[j] * speed_scale * speed_scale;
+      new_trajectory.joint_trajectory.points[i].accelerations[j] = initial_trajectory.joint_trajectory.points[i].accelerations[j] * speed_scale * speed_scale;
       // new_trajectory.joint_trajectory.points[i].velocities[j] = initial_trajectory.joint_trajectory.points[i].velocities[j];
-      new_trajectory.joint_trajectory.points[i].accelerations[j] = initial_trajectory.joint_trajectory.points[i].accelerations[j];
+      // new_trajectory.joint_trajectory.points[i].accelerations[j] = initial_trajectory.joint_trajectory.points[i].accelerations[j];
       new_trajectory.joint_trajectory.points[i].positions[j] = initial_trajectory.joint_trajectory.points[i].positions[j];
     }
   }
@@ -90,7 +90,6 @@ int main(int argc, char** argv)
 
   // group.execute(initial_plan);
   group.execute(new_plan);
-  // group.execute(new_trajectory);
 
   ros::spinOnce();
   ros::shutdown();

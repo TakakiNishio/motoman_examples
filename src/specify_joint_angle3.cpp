@@ -13,8 +13,6 @@ int main(int argc, char** argv)
   // Initialization of moveit
   moveit::planning_interface::MoveGroupInterface group("arm");
 
-  // group.setPlannerId("STOMP");
-
   // Setting the start position
   robot_state::RobotState robot_state_start(*group.getCurrentState());
   group.setStartState(robot_state_start);
@@ -51,22 +49,19 @@ int main(int argc, char** argv)
   moveit::planning_interface::MoveGroup::Plan initial_plan;
   group.plan(initial_plan);
 
+  // Scaling the execution speed
   moveit_msgs::RobotTrajectory initial_trajectory;
   moveit_msgs::RobotTrajectory new_trajectory;
 
   initial_trajectory = initial_plan.trajectory_;
   new_trajectory = initial_trajectory;
   new_trajectory.joint_trajectory.header = initial_trajectory.joint_trajectory.header;
-  // new_trajectory.multi_dof_joint_trajectory = initial_trajectory.multi_dof_joint_trajectory;
 
   int n_joints = 6;
-  // int n_points = sizeof(initial_trajectory.joint_trajectory.points);
   int n_points = initial_trajectory.joint_trajectory.points.size();
   double speed_scale = 3.0;
 
   std::cout << n_points << std::endl;
-
-  // ros::Duration start_time_0(initial_trajectory.joint_trajectory.points[0].time_from_start.toSec());
 
   for (int i=1; i<n_points; i++){
     ros::Duration start_time(initial_trajectory.joint_trajectory.points[i].time_from_start.toSec() / speed_scale);
@@ -74,14 +69,10 @@ int main(int argc, char** argv)
 
     for (int j=0; j<n_joints; j++){
       new_trajectory.joint_trajectory.points[i].velocities[j] = initial_trajectory.joint_trajectory.points[i].velocities[j] * speed_scale;
-      // new_trajectory.joint_trajectory.points[i].accelerations[j] = initial_trajectory.joint_trajectory.points[i].accelerations[j] * speed_scale * speed_scale;
-      // new_trajectory.joint_trajectory.points[i].velocities[j] = initial_trajectory.joint_trajectory.points[i].velocities[j];
-      new_trajectory.joint_trajectory.points[i].accelerations[j] = initial_trajectory.joint_trajectory.points[i].accelerations[j];
+      new_trajectory.joint_trajectory.points[i].accelerations[j] = initial_trajectory.joint_trajectory.points[i].accelerations[j] * speed_scale * speed_scale;
       new_trajectory.joint_trajectory.points[i].positions[j] = initial_trajectory.joint_trajectory.points[i].positions[j];
     }
   }
-
-  // initial_trajectory.joint_trajectory.points[0].time_from_start = start_time_0;
 
   moveit::planning_interface::MoveGroup::Plan new_plan;
   new_plan.planning_time_ = initial_plan.planning_time_;
@@ -90,7 +81,6 @@ int main(int argc, char** argv)
 
   // group.execute(initial_plan);
   group.execute(new_plan);
-  // group.execute(new_trajectory);
 
   ros::spinOnce();
   ros::shutdown();
