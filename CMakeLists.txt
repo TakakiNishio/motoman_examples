@@ -28,9 +28,6 @@ catkin_package(
   moveit_ros_planning_interface
   )
 
-add_executable(specify_joint_angle src/specify_joint_angle.cpp)
-target_link_libraries(specify_joint_angle ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-
 add_executable(motion_planning_1 src/moving_1.cpp)
 target_link_libraries(motion_planning_1 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
@@ -58,3 +55,17 @@ target_link_libraries(multiple_plans_and_execution ${catkin_LIBRARIES} ${Boost_L
 add_executable(tunnel_planning_and_execution src/tunnel_planning_and_execution.cpp)
 target_link_libraries(tunnel_planning_and_execution ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
+add_executable(go_back_to_default_pose src/go_back_to_default_pose.cpp)
+target_link_libraries(go_back_to_default_pose ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(specify_joint_angle0 src/specify_joint_angle0.cpp)
+target_link_libraries(specify_joint_angle0 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(specify_joint_angle1 src/specify_joint_angle1.cpp)
+target_link_libraries(specify_joint_angle1 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(specify_joint_angle2 src/specify_joint_angle2.cpp)
+target_link_libraries(specify_joint_angle2 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(specify_joint_angle3 src/specify_joint_angle3.cpp)
+target_link_libraries(specify_joint_angle3 ${catkin_LIBRARIES} ${Boost_LIBRARIES})

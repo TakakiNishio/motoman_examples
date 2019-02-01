@@ -27,20 +27,34 @@ int main(int argc, char** argv)
   //   <joint name="joint_6" value="3.14159" />
   // </group_state>
 
+  // joints["joint_1"] = 0.0;
+  // joints["joint_2"] = 0.0;
+  // joints["joint_3"] = 0.0;
+  // joints["joint_4"] = 0.0;
+  // joints["joint_5"] = 0.0;
+  // joints["joint_6"] = 0.0;
 
-  joints["joint_1"] = -0.785398163;
-  joints["joint_2"] = -0.35203291;
-  joints["joint_3"] = 2.27294228;
-  joints["joint_4"] = 0.0003490659;
-  joints["joint_5"] = 1.22173;
-  joints["joint_6"] = 3.14159;
+  // joints["joint_1"] = -0.785398163;
+  // joints["joint_2"] = -0.35203291;
+  // joints["joint_3"] = 2.27294228;
+  // joints["joint_4"] = 0.0003490659;
+  // joints["joint_5"] = 1.22173;
+  // joints["joint_6"] = 3.14159;
+
+  joints["joint_1"] = -0.5952798725345883;
+  joints["joint_2"] = 0.3215349698695835;
+  joints["joint_3"] = 2.065312535177645;
+  joints["joint_4"] = -0.0004594870220877567;
+  joints["joint_5"] = 0.7557963565450452;
+  joints["joint_6"] = 2.54693876500371;
 
   group.setJointValueTarget(joints);
+  // group.setMaxVelocityScalingFactor(0.01);
 
   // Running the moveit planning
   moveit::planning_interface::MoveGroup::Plan result_plan;
   group.plan(result_plan);
-  group.move();
+  group.execute(result_plan);
 
   ros::spinOnce();
   ros::shutdown();
