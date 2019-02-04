@@ -69,3 +69,6 @@ target_link_libraries(specify_joint_angle2 ${catkin_LIBRARIES} ${Boost_LIBRARIES
 
 add_executable(specify_joint_angle3 src/specify_joint_angle3.cpp)
 target_link_libraries(specify_joint_angle3 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(specify_joint_angle4 src/specify_joint_angle4.cpp)
+target_link_libraries(specify_joint_angle4 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
